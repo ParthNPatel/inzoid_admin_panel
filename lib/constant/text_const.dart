@@ -1,0 +1,53 @@
+class TextConst {
+  static String fontFamily = 'DMSans-Regular';
+  static String serverKey =
+      'AAAABvV7pVk:APA91bHr9KJl9LPJUpd41xZ_1x50wRo1RMp1zzyNy_-y3wi45gPC_AyBLmqNymdbewTPbQD1vk7cJfKgQ_n2PMaygygeCv37tq_XYXdTvTPY168105zmeF5UXFljL3gzpl4_gMemYyM-';
+  static String emailPhone = 'Email/ Phone';
+  static String newPassword = 'New Password';
+  static String welcomeBackTo = 'Welcome back to';
+  static String updatePassword = 'Update Password';
+  static String resetPassword = 'Reset Password';
+  static String inzoid = 'Inzoid';
+  static String RegisteredMobileOrEmail =
+      'Enter Your Registered Mobile Or Email';
+  static String password = 'Password';
+  static String confirmNewPassword = 'Confirm New Password';
+  static String moreThen6 = 'Enter More Then 6 digit password';
+  static String enterYourNewPassword = 'Enter Your New Password';
+  static String email = 'Email';
+  static String signIn = 'Sign In';
+  static String reset = 'Reset';
+  static String signUp = 'Sign Up';
+  static String saveUpdate = 'Save Update';
+  static String forgotPassword = 'Forgot Password?';
+  static String continueAsGuest = 'Continue As Guest ';
+  static String canNotBeEmpty = 'Email or Password can not be empty';
+  static String enterValidEmail = 'Please enter valid email';
+  static String failed = 'Failed';
+  static String verification = 'Verification';
+  static String optSentSuccessfully = 'OTP Sent Successfully ';
+  static String changeMobile = 'Change Mobile/Email?';
+  static String verificationCode = 'Verification Code';
+  static String resendCode = 'Re-send Code';
+  static String continueText = 'Continue';
+  static String profileAndPassword = 'Profile & Password';
+  static String stepUp = 'Step up your profile';
+  static String fullName = 'Full Name';
+  static String referalCode = 'Referal Code (Optional)';
+  static String inputYourCode = 'Input your code';
+  static String letsGo = 'Let’s Go';
+  static String brandMania = 'Brand Mania';
+  static String seeAll = 'See All';
+  static String men = 'Men';
+  static String women = 'Women';
+  static String kids = 'Kids';
+  static String filters = 'Filters';
+  static String itemsOnSale = 'Items on Sale';
+  static String price = 'Price';
+  static String from = 'from';
+  static String by = 'by';
+  static String size = 'Size';
+  static String season = 'Season';
+  static String material = 'Material';
+  static String color = 'Color';
+}
