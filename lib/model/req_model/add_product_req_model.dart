@@ -6,7 +6,7 @@ String material = "Cotton";
 class AddProductReqModel {
   String? productName;
   String? brand;
-  String? price;
+  int? price;
   String? oldPrice;
   String? description;
   List? listOfImage;

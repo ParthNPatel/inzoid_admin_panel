@@ -641,7 +641,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                               'total_count': FieldValue.increment(1),
                             });
                             _addProductReqModel.listOfImage = getAllURL;
-                            _addProductReqModel.price = price.text;
+                            _addProductReqModel.price = int.parse(price.text);
                             _addProductReqModel.brand = brand.text;
                             _addProductReqModel.oldPrice = oldPrice.text;
                             _addProductReqModel.description = description.text;
