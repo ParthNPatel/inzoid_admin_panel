@@ -15,6 +15,7 @@ import '../constant/color_const.dart';
 import '../constant/text_const.dart';
 import '../controller/handle_screen_controller.dart';
 import '../model/req_model/add_product_req_model.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class AddProductScreen extends StatefulWidget {
@@ -368,6 +369,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       CommonWidget.commonSizedBox(height: 10),
                       CommonWidget.textFormField(
                         controller: price,
+                        inpuFormator: [FilteringTextInputFormatter.digitsOnly],
                       ),
                     ],
                   ),
@@ -422,6 +424,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       CommonWidget.commonSizedBox(height: 10),
                       CommonWidget.textFormField(
                         controller: oldPrice,
+                        inpuFormator: [FilteringTextInputFormatter.digitsOnly],
                       ),
                       CommonWidget.commonSizedBox(height: 20),
                     ],
@@ -797,7 +800,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
     } catch (e) {
       print("error push notification");
       // return false;
-
     }
   }
 }
