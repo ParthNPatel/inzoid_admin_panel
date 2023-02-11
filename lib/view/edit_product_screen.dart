@@ -30,7 +30,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   String season = "Summer";
   String material = "Cotton";
 
-  String color = "Grey";
+  List color = [];
 
   List<String> categoryList = [
     'Deal',
@@ -71,6 +71,19 @@ class _EditProductScreenState extends State<EditProductScreen> {
     'Orange',
   ];
 
+  List<String> colorListData = [
+    "0xff808080",
+    "0xff000000",
+    "0xffFFFFFF",
+    "0xffFF0000",
+    "0xffFFFF00",
+    "0xff0000FF",
+    "0xffFFC0CB",
+    "0xffA020F0",
+    "0xff964B00",
+    "0xffFFA500",
+  ];
+
   EditProductController editProductController = Get.find();
 
   TextEditingController? productName;
@@ -103,6 +116,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
     material = editProductController.material!;
 
     color = editProductController.color!;
+
+    print('----COLOR-----${color}');
 
     super.initState();
   }
@@ -460,42 +475,68 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   SizedBox(
                     width: 50,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      //CommonWidget.commonSizedBox(height: 18),
-                      CommonText.textBoldWight500(
-                          text: 'Select Color', fontSize: 7.sp),
-                      CommonWidget.commonSizedBox(height: 10),
-                      Container(
-                        height: 14.sp,
-                        width: 50.sp,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(3),
-                            border: Border.all(color: Colors.grey)),
-                        child: Center(
-                          child: DropdownButton(
-                            underline: SizedBox(),
-                            value: color,
-                            items: colorList.map((e) {
-                              return DropdownMenuItem(
-                                child: Text(e),
-                                value: e,
-                              );
-                            }).toList(),
-                            onChanged: (value) {
-                              setState(() {
-                                color = value!;
-                              });
-                            },
-                          ),
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     //CommonWidget.commonSizedBox(height: 18),
+                  //     CommonText.textBoldWight500(
+                  //         text: 'Select Color', fontSize: 7.sp),
+                  //     CommonWidget.commonSizedBox(height: 10),
+                  //     Container(
+                  //       height: 14.sp,
+                  //       width: 50.sp,
+                  //       decoration: BoxDecoration(
+                  //           color: Colors.white,
+                  //           borderRadius: BorderRadius.circular(3),
+                  //           border: Border.all(color: Colors.grey)),
+                  //       child: Center(
+                  //         child: DropdownButton(
+                  //           underline: SizedBox(),
+                  //           value: color,
+                  //           items: colorList.map((e) {
+                  //             return DropdownMenuItem(
+                  //               child: Text(e),
+                  //               value: e,
+                  //             );
+                  //           }).toList(),
+                  //           onChanged: (value) {
+                  //             setState(() {
+                  //               color = value!;
+                  //             });
+                  //           },
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     CommonWidget.commonSizedBox(height: 30),
+                  //   ],
+                  // )
+                ],
+              ),
+              CommonWidget.commonSizedBox(height: 20),
+              CommonText.textBoldWight500(text: 'Colors', fontSize: 7.sp),
+              CommonWidget.commonSizedBox(height: 10),
+              Row(
+                children: List.generate(
+                  color.length,
+                  (index) => Container(
+                    padding: EdgeInsets.all(4),
+                    margin: EdgeInsets.only(right: 10),
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: Color(
+                        int.parse(
+                          color[index],
                         ),
                       ),
-                      CommonWidget.commonSizedBox(height: 30),
-                    ],
-                  )
-                ],
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        width: 2,
+                        color: Colors.transparent,
+                      ),
+                    ),
+                  ),
+                ),
               ),
               CommonWidget.commonSizedBox(height: 20),
               CommonText.textBoldWight500(text: 'Quantity', fontSize: 7.sp),
@@ -575,7 +616,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                             season = "Summer";
                             material = "Cotton";
 
-                            color = "Grey";
+                            color = [];
                             editProductController.listOfImage!.clear();
                             isLoading = true;
                             setState(() {});

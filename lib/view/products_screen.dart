@@ -282,22 +282,46 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       : ProductTile(
                           onEdit: () {
                             editProductController.listOfImage!.clear();
-                            editProductController.addProductData(
-                              docId: products[index].id,
-                              listOfImage: products[index].get("listOfImage"),
-                              productName: products[index].get("productName"),
-                              brand: products[index].get("brand"),
-                              price: products[index].get("price"),
-                              oldPrice: products[index].get("oldPrice"),
-                              color: products[index].get("color"),
-                              category: products[index].get("category"),
-                              description: products[index].get("description"),
-                              material: products[index].get("material"),
-                              season: products[index].get("season"),
-                              subCategory: products[index].get("subCategory"),
-                              quantity:
-                                  products[index].get("quantity").toString(),
-                            );
+                            try {
+                              editProductController.addProductData(
+                                docId: products[index].id,
+                                listOfImage: products[index].get("listOfImage"),
+                                productName: products[index].get("productName"),
+                                brand: products[index].get("brand"),
+                                price: products[index].get("price"),
+                                oldPrice: products[index].get("oldPrice"),
+                                color: products[index].get("color"),
+                                category: products[index].get("category"),
+                                description: products[index].get("description"),
+                                material: products[index].get("material"),
+                                season: products[index].get("season"),
+                                subCategory: products[index].get("subCategory"),
+                                quantity:
+                                    products[index].get("quantity").toString(),
+                              );
+                            } catch (e) {
+                              editProductController.addProductData(
+                                docId: products[index].id,
+                                listOfImage: products[index].get("listOfImage"),
+                                productName: products[index].get("productName"),
+                                brand: products[index].get("brand"),
+                                price: products[index].get("price"),
+                                oldPrice: products[index].get("oldPrice"),
+                                color: [
+                                  "0xff808080",
+                                  "0xff000000",
+                                  "0xffFFFFFF",
+                                  "0xffFF0000",
+                                ],
+                                category: products[index].get("category"),
+                                description: products[index].get("description"),
+                                material: products[index].get("material"),
+                                season: products[index].get("season"),
+                                subCategory: products[index].get("subCategory"),
+                                quantity:
+                                    products[index].get("quantity").toString(),
+                              );
+                            }
                             controller.changeTapped1(true);
                             // Get.to(() => EditProductScreen());
                             //Navigator.pushNamed(context, '/EditProduct');

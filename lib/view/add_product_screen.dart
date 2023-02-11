@@ -1,11 +1,13 @@
 import 'dart:convert';
-import 'dart:typed_data';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:inzoid_admin_panel/components/common_widget.dart';
 import 'package:inzoid_admin_panel/constant/text_styel.dart';
 import 'package:sizer/sizer.dart';
@@ -115,6 +117,43 @@ class _AddProductScreenState extends State<AddProductScreen> {
     super.initState();
   }
 
+  CroppedFile? croppedFiles;
+
+  Future<void> _cropImage({String? filePath, int? index}) async {
+    final croppedFile = await ImageCropper().cropImage(
+      cropStyle: CropStyle.rectangle,
+      sourcePath: filePath!,
+      compressFormat: ImageCompressFormat.jpg,
+      compressQuality: 100,
+      uiSettings: [
+        WebUiSettings(
+          enableResize: true,
+          mouseWheelZoom: true,
+          barrierColor: Colors.transparent,
+          enableOrientation: true,
+          enforceBoundary: true,
+          context: context,
+          presentStyle: CropperPresentStyle.dialog,
+          boundary: const CroppieBoundary(
+            width: 400,
+            height: 400,
+          ),
+          enableExif: true,
+          enableZoom: true,
+          showZoomer: true,
+        ),
+      ],
+    );
+    if (croppedFile != null) {
+      croppedFiles = croppedFile;
+      Uint8List cropFileData = await croppedFiles!.readAsBytes();
+      _listOfImage.removeAt(index!);
+      _listOfImage.insert(index, cropFileData);
+      setState(() {});
+      print('------IAMGE PATH----${_listOfImage}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Flexible(
@@ -155,11 +194,25 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             (index) => Container(
                               height: 200,
                               width: 200,
+                              alignment: Alignment.topRight,
                               decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: MemoryImage(_listOfImage[index]),
-                                      fit: BoxFit.cover),
-                                  border: Border.all(color: Colors.black)),
+                                image: DecorationImage(
+                                    image: MemoryImage(_listOfImage[index]),
+                                    fit: BoxFit.cover),
+                                border: Border.all(
+                                  color: Colors.black,
+                                ),
+                              ),
+                              child: IconButton(
+                                onPressed: () async {
+                                  var magePath =
+                                      XFile.fromData(_listOfImage[index]);
+                                  print('----IMAGE PATH----${magePath.path}');
+                                  _cropImage(
+                                      filePath: magePath.path, index: index);
+                                },
+                                icon: Icon(Icons.edit),
+                              ),
                             ),
                           ),
                         )
@@ -179,10 +232,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         selectedImages.files.forEach((element) {
                           _listOfImage.add(element.bytes!);
                         });
+
                         // Uint8List? file = selectedImages.files.first.bytes;
 
                         print('selectedImages  image of  ${selectedImages}');
                       }
+                      print("Image List :${_listOfImage}");
                       print("Image List Length:${_listOfImage.length}");
                       setState(() {});
                     },

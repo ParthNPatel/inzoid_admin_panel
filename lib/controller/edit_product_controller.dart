@@ -13,7 +13,7 @@ class EditProductController extends GetxController {
   String? season;
   String? material;
   String? quantity;
-  String? color;
+  List? color;
 
   void addProductData(
       {String? productName,
@@ -26,7 +26,7 @@ class EditProductController extends GetxController {
       String? subCategory,
       String? season,
       String? material,
-      String? color,
+      List? color,
       String? quantity,
       String? docId}) {
     this.productName = productName;
